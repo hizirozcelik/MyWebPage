@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random VHF Radio Frequency and ATC Unit Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #randomInfo {
+    font-size: 72px;
+    margin: 300px 0;
+  }
+</style>
+</head>
+<body>
+  <h1>Random VHF Radio Frequency and ATC Unit Generator</h1>
+  <div id="randomInfo">Click the button to generate a random VHF radio frequency and ATC unit</div>
+  <button onclick="generateRandomInfo()">Generate Random Info</button>
+
+  <script>
+    function generateRandomInfo() {
+      var atcUnits = [
+        "Toronto Center", "Montreal Center", "Vancouver Center", "Edmonton Center", "Winnipeg Center",
+        "Los Angeles Center", "Chicago Center", "New York Center", "Boston Center", "Miami Center",
+        "Toronto Approach", "Los Angeles Approach", "Cinncinati Approach", "Miami Approach"
+      ];
+
+      var randomATCUnit = atcUnits[Math.floor(Math.random() * atcUnits.length)]; // Randomly select an ATC unit from the list
+
+      var wholePart = Math.floor(Math.random() * (137 - 118) + 118); // Generate random whole part between 118 to 137
+      var decimalPart = Math.floor(Math.random() * 1000); // Generate random decimal part between 0 to 999
+      decimalPart = Math.floor(decimalPart / 5) * 5; // Round down to the nearest multiple of 5
+      if (decimalPart == 1000) decimalPart = 0; // If decimalPart is 1000, set it to 0
+      
+      // Format decimal part to have three digits
+      decimalPart = decimalPart.toString().padStart(3, '0');
+
+      var frequency = wholePart + "." + decimalPart; // Concatenate whole part, decimal part
+
+      document.getElementById("randomInfo").textContent = "Contact " + randomATCUnit + " at " + frequency;
+    }
+
+    // Event listener for keypress event
+    document.addEventListener("keypress", function(event) {
+      // Check if the Enter key is pressed (key code 13)
+      if (event.keyCode === 13) {
+        generateRandomInfo(); // Generate a new random frequency
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Number Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #randomNumber {
+    font-size: 72px;
+    margin: 300px 0;
+  }
+</style>
+</head>
+<body>
+  <h1>Random Number Generator</h1>
+  <div id="randomNumber">Click the button to generate a random 10-digit number</div>
+  <button onclick="generateRandomNumber()">Generate Random Number</button>
+
+  <script>
+    function generateRandomNumber() {
+      var randomNumber = Math.floor(1000000000 + Math.random() * 9000000000); // Generate a 10-digit random number
+      document.getElementById("randomNumber").textContent = randomNumber;
+    }
+  </script>
+</body>
+</html>
